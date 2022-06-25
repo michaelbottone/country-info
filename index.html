@@ -12,10 +12,11 @@
   <body>
     <header></header>
     <div class="left-container">
-      <h1 id="heading">Select the country you wish to learn more about.</h1>
+      <h1 id="heading">Select the country you want to learn about!</h1>
       <div id="form">
         <label for="hello">Choose a Country</label>
         <select name="hello" id="hello">
+          <option value="" disabled selected="selected">Select</option>
           <option value="AF">Afghanistan</option>
           <option value="AL">Albania</option>
           <option value="DZ">Algeria</option>
@@ -247,6 +248,7 @@
       </div>
     </div>
     <div class="right-container">
+      <div id="location"></div>
       <div id="map-container"></div>
       <div id="hello-container"></div>
     </div>

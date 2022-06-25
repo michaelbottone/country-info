@@ -10,13 +10,18 @@ body {
   margin: 0 auto;
   width: 90%;
   justify-content: space-around;
+  background: url('boat.jpg');
+  background-size: cover;
 }
+
 #hello {
   text-align: left;
   border-radius: 8px;
 }
 label {
   font-size: 1.4rem;
+  color: navy;
+  font-weight: 600;
 }
 iframe {
   border-radius: 50%;
@@ -31,6 +36,7 @@ iframe {
   flex-direction: column;
   justify-content: space-evenly;
   min-height: 80vh;
+  z-index: 5;
 }
 .right-container {
   margin-top: 40px;
@@ -38,12 +44,19 @@ iframe {
   flex-direction: column;
   flex-basis: 30%;
   min-height: 80vh;
+  z-index: 5;
 }
 #hello-container {
   text-align: center;
+  color: #fff;
 }
 #map-container {
   text-align: right;
+}
+#location {
+  text-align: center;
+  font-size: 2rem;
+  color: #fff;
 }
 #hola {
   background-color: white;
@@ -53,4 +66,6 @@ iframe {
   border-radius: 12px;
   text-decoration: underline;
   font-size: 4rem;
+  margin: 15px;
+  display: block;
 }
