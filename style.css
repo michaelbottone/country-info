@@ -1,0 +1,33 @@
+#heading {
+  text-align: center;
+  color: magenta;
+  font-size: 3rem;
+  width: 80%;
+}
+body {
+  background: lightblue;
+  display: flex;
+  width: 90%;
+  justify-content: space-around;
+}
+#hello {
+  text-align: left;
+  border-radius: 8px;
+}
+label {
+  font-size: 3rem;
+}
+#form {
+  margin: 0 auto;
+  width: 500px;
+}
+.right-container {
+  display: flex;
+  flex-direction: column;
+}
+#hello-container {
+  text-align: center;
+}
+#map-container {
+  text-align: right;
+}
