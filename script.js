@@ -255,10 +255,10 @@ const apiCall = async () => {
   if (response.data.hello === '') {
     helloContainer.innerHTML = `<h1>Oops, I don't know how to say hello in ${countryName}\'s language</h1>`
   } else {
-    helloContainer.innerHTML = `<h1>${response.data.hello}</h1>`
+    helloContainer.innerHTML = `<h1>You can say "hello" in ${countryName} like this:<br> <span id="hola">${response.data.hello}</span></h1>`
   }
   // helloContainer.innerHTML += coordinates
-  mapContainer.innerHTML = `<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=400&w=500&cp=${coordinatesA}~${coordinatesB}&lvl=6&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+  mapContainer.innerHTML = `<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=500&w=500&cp=${coordinatesA}~${coordinatesB}&lvl=6&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
   </iframe>`
 }
 
