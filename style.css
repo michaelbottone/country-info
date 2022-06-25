@@ -26,12 +26,14 @@ iframe {
   width: 500px;
 }
 .left-container {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   min-height: 80vh;
 }
 .right-container {
+  margin-top: 40px;
   display: flex;
   flex-direction: column;
   flex-basis: 30%;
@@ -49,4 +51,6 @@ iframe {
   color: navy;
   padding: 6px;
   border-radius: 12px;
+  text-decoration: underline;
+  font-size: 4rem;
 }
