@@ -255,7 +255,7 @@ const apiCall = async () => {
   let coordinatesB =
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[1]
   if (response.data.hello === '') {
-    helloContainer.innerHTML = `<h1>Oops, I don't know how to say hello in ${countryName}\'s language</h1>`
+    helloContainer.style.display = 'none'
   } else {
     helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while your're in ${countryName} like this:<br> <span id="hola">${response.data.hello}</span></h1>`
   }
