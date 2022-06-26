@@ -8,45 +8,32 @@
 }
 body {
   background: rgb(237, 251, 255);
-
   margin: 0 auto;
   width: 90%;
-
   background: url('boat.jpg');
   background-size: cover;
 }
-.main-container {
-  display: flex;
-  justify-content: center;
-}
-#hello-container > h1 {
-  width: 80%;
-}
-#hello {
-  text-align: left;
-  border-radius: 8px;
-}
+
 label {
   font-size: 1.4rem;
   color: navy;
   font-weight: 600;
-}
-
-#form {
-  width: 500px;
-  margin: 0 auto;
-  padding: 40px;
 }
 .lp-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 30vh;
-  z-index: 5;
   background: rgb(255, 255, 255, 0.8);
   border-radius: 12px;
-  margin: 30px;
+  margin: 10% auto;
+  width: 60vw;
 }
+.main-container {
+  display: flex;
+  justify-content: center;
+}
+
 .left-container {
   display: flex;
   flex-direction: column;
@@ -66,11 +53,23 @@ label {
   min-height: 50vh;
   z-index: 5;
 }
+#hello-container > h1 {
+  width: 80%;
+}
+#hello {
+  text-align: left;
+  border-radius: 8px;
+}
+#form {
+  width: 500px;
+  margin: 0 auto;
+  padding: 40px;
+}
 #hello-container {
   display: flex;
   justify-content: center;
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: #555;
 }
 #map-container {
   justify-content: space-evenly;
@@ -84,7 +83,7 @@ label {
 #location {
   text-align: center;
   font-size: 2rem;
-  color: #000;
+  color: #555;
   background: rgb(255, 255, 255, 0.8);
   border-radius: 12px;
   padding: 10px;
@@ -95,12 +94,13 @@ label {
   margin: 20px;
   padding: 20px;
   text-decoration: none;
+  font-weight: 700;
 }
 #backlink > span {
   padding: 20px;
   border-radius: 12px;
   background: rgb(255, 255, 255, 0.8);
-  color: black;
+  color: navy;
   text-decoration: none;
   font-size: 1.3rem;
 }
