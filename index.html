@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
+    <script
+      type="text/javascript"
+      src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap"
+      async
+      defer
+    ></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script defer src="script.js"></script>
     <title>Document</title>
@@ -249,7 +255,10 @@
     </div>
     <div class="right-container">
       <div id="location"></div>
-      <div id="map-container"></div>
+      <div
+        id="map-container"
+        style="position: relative; width: 600px; height: 400px"
+      ></div>
       <div id="hello-container"></div>
     </div>
   </body>

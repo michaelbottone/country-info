@@ -4,7 +4,6 @@ const locationContainer = document.querySelector('#location')
 const mapContainer = document.querySelector('#map-container')
 const apiKey =
   'jsonp=GeocodeCallback&key=AiwZaKSOpDkgpIQGX2rMFIsMkvcd_Nv98haULE_IvmMaDv4H5ckuSlGYt3hLoYY-'
-
 const countryArray = [
   '',
   'Afghanistan',
@@ -249,7 +248,6 @@ const apiCall = async () => {
   let mapRepsonse = await axios.get(
     `https://dev.virtualearth.net/REST/v1/Locations?query='${countryName}'${apiKey}`
   )
-
   let coordinatesA =
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[0]
   let coordinatesB =
@@ -259,9 +257,28 @@ const apiCall = async () => {
   } else {
     helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while your're in ${countryName} like this:<br> <span id="hola">${response.data.hello}</span></h1>`
   }
+  GetMap = () => {
+    let map = new Microsoft.Maps.Map(mapContainer, {
+      credentials:
+        'AiwZaKSOpDkgpIQGX2rMFIsMkvcd_Nv98haULE_IvmMaDv4H5ckuSlGYt3hLoYY-',
+      center: new Microsoft.Maps.Location(coordinatesA, coordinatesB)
+    })
+
+    let center = map.getCenter()
+
+    //Create custom Pushpin
+    let pin = new Microsoft.Maps.Pushpin(center, {
+      title: countryName,
+      color: 'blue'
+    })
+
+    map.entities.push(pin)
+  }
+
+  GetMap()
   locationContainer.innerHTML = `You can find ${countryName} here:`
-  mapContainer.innerHTML = `<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=500&w=500&cp=${coordinatesA}~${coordinatesB}&lvl=6&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
-  </iframe>`
+  // mapContainer.innerHTML = `<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=500&w=500&cp=${coordinatesA}~${coordinatesB}&lvl=6&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
+  // </iframe>`
 }
 
 button.addEventListener('change', apiCall)
