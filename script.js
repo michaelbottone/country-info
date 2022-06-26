@@ -263,13 +263,13 @@ const apiCall = async () => {
         'AiwZaKSOpDkgpIQGX2rMFIsMkvcd_Nv98haULE_IvmMaDv4H5ckuSlGYt3hLoYY-',
       center: new Microsoft.Maps.Location(coordinatesA, coordinatesB)
     })
-
     let center = map.getCenter()
-
-    //Create custom Pushpin
     let pin = new Microsoft.Maps.Pushpin(center, {
       title: countryName,
       color: 'blue'
+    })
+    map.setView({
+      zoom: 3
     })
 
     map.entities.push(pin)
@@ -277,8 +277,6 @@ const apiCall = async () => {
 
   GetMap()
   locationContainer.innerHTML = `You can find ${countryName} here:`
-  // mapContainer.innerHTML = `<iframe width="500" height="400" frameborder="0" src="https://www.bing.com/maps/embed?h=500&w=500&cp=${coordinatesA}~${coordinatesB}&lvl=6&typ=s&sty=r&src=SHELL&FORM=MBEDV8" scrolling="no">
-  // </iframe>`
 }
 
 button.addEventListener('change', apiCall)
