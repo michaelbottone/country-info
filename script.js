@@ -3,12 +3,12 @@ const locationContainer = document.querySelector('#location')
 const mapContainer = document.querySelector('#map-container')
 const apiKey =
   'AiwZaKSOpDkgpIQGX2rMFIsMkvcd_Nv98haULE_IvmMaDv4H5ckuSlGYt3hLoYY-'
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+const countryCode = urlParams.get('cc')
+const countryName = urlParams.get('countryName')
 
 const apiCall = async () => {
-  let countryCode = button.value
-  let pick = button.selectedIndex
-  let countryName = countryArray[pick]
-
   let response = await axios.get(
     `https://fourtonfish.com/hellosalut/?cc=${countryCode}`
   )
@@ -19,8 +19,9 @@ const apiCall = async () => {
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[0]
   let coordinatesB =
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[1]
-  if (response.data.countryCode === '') {
-    helloContainer.style.display = 'none'
+  locationContainer.innerHTML = `You can find ${countryName} here:`
+  if (response.data.hello === '') {
+    document.querySelector('.left-container').style.display = 'none'
   } else {
     helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while your're in ${countryName} like this:<br> <span id="hola">${response.data.hello}</span></h1>`
   }
@@ -42,7 +43,6 @@ const apiCall = async () => {
   }
 
   GetMap()
-  locationContainer.innerHTML = `You can find ${countryName} here:`
 }
 
-button.addEventListener('change', apiCall)
+apiCall()

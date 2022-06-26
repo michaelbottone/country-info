@@ -237,7 +237,7 @@ const pushCountry = () => {
   const urlParam2 = new URLSearchParams(window.open.search)
   urlParams.set('cc', countryCode)
   urlParam2.set('countryName', countryName)
-  window.open.search = urlParam2
+  ;(window.open.search = urlParam2), urlParams
   window.open.search = urlParams
   window.open('/countryinfo.html' + '?' + urlParams + '&' + urlParam2, '_self')
 }
