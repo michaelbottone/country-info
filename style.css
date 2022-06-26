@@ -79,6 +79,12 @@ label {
   background: rgb(255, 255, 255, 0.8);
   font-weight: 700;
   font-size: 1.3rem;
+  display: inline-block;
+  margin: 10px 0px 10px 0px;
+}
+
+#googleLink {
+  color: white;
 }
 #hello {
   text-align: left;
@@ -88,6 +94,9 @@ label {
   width: 500px;
   margin: 0 auto;
   padding: 40px;
+}
+#form > .select {
+  font-size: 2rem;
 }
 #hello-container {
   display: flex;
@@ -135,5 +144,4 @@ label {
   text-decoration: underline;
   font-size: 4rem;
   margin: 15px;
-  display: block;
 }

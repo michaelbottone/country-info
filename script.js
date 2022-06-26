@@ -26,7 +26,7 @@ const apiCall = async () => {
   if (response.data.hello === '') {
     document.querySelector('.left-container').style.display = 'none'
   } else {
-    helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while your're in ${countryName} like this:<br> <span id="hola">${howHello}</span></h1>`
+    helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while your're in ${countryName} like this:<br><a href="https://www.google.com/search?q=how+to+pronounce+${howHello}" target="_blank"><span id="hola">${howHello}</span></a></h1>`
   }
   GetMap = () => {
     let map = new Microsoft.Maps.Map(mapContainer, {
@@ -40,7 +40,7 @@ const apiCall = async () => {
       subtitle: howHello,
       color: '#ff3333'
     })
-    let title = countryName
+    let title = `<a id="googleLink" href="https://www.google.com/search?q=${countryName}" target="_blank" title="click to google this country">${countryName}</a>`
     let description = `You can say hello in ${countryName} like this: <br><span id="infobox-desc">${howHello}</span>`
 
     if (howHello === '') {
