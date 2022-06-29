@@ -13,11 +13,29 @@ body {
   background: url('boat.jpg');
   background-size: cover;
 }
-
 label {
   font-size: 1.4rem;
   color: navy;
   font-weight: 600;
+}
+i {
+  font-size: 1.3rem;
+}
+.top-container > * {
+  background: rgb(255, 255, 255, 0.8);
+  padding: 8px;
+  border-radius: 12px;
+  color: #555;
+  width: 30%;
+  text-align: center;
+}
+.top-container > * {
+  font-size: 1.1rem;
+}
+.top-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
 }
 .lp-container {
   display: flex;
@@ -144,4 +162,13 @@ label {
   text-decoration: underline;
   font-size: 4rem;
   margin: 15px;
+}
+#temp,
+#feels,
+#rain {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+#air-quality {
+  font-size: 3rem;
 }

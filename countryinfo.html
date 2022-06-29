@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <script
+      src="https://kit.fontawesome.com/162a02843e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/style.css" />
     <script
       type="text/javascript"
       src="http://www.bing.com/api/maps/mapcontrol?callback=GetMap"
@@ -16,8 +20,17 @@
     <title>Learn About a Country!</title>
   </head>
   <body>
+    <div class="top-container">
+      <div id="top-left">
+        <h3><i class="fa-solid fa-temperature-full"></i></h3>
+        <p>Temperature: <span id="temp"></span></p>
+        <p>Feels like: <span id="feels"></span></p>
+        <p>Chance of rain: <span id="rain"></span></p>
+      </div>
+      <div id="top-center"><h3>Pollen Factors:</h3><p id="pollen-grass">Grass:</p><p id="pollen-weeds">Weeds:</p><p id="pollen-trees">Trees:</p></p></div>
+      <div id="top-right"><h3>Air Quality:</h3><p><span id="air-quality"></span></p></div>
+    </div>
     <div class="main-container">
-      <header></header>
       <div class="left-container">
         <div id="hello-container"></div>
       </div>
