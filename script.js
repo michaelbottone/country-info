@@ -1,8 +1,9 @@
 const temp = document.querySelector('#temp')
 const feels = document.querySelector('#feels')
 const rain = document.querySelector('#rain')
-const airQ = document.querySelector('#air-quality')
 const topCenter = document.querySelector('#top-center')
+const topLeft = document.querySelector('#top-left')
+const topRight = document.querySelector('#top-right')
 const pollenGrass = document.querySelector('#pollen-grass')
 const pollenWeeds = document.querySelector('#pollen-weeds')
 const pollenTrees = document.querySelector('#pollen-trees')
@@ -35,7 +36,7 @@ const apiCall = async () => {
   if (response.data.hello === '') {
     document.querySelector('.left-container').style.display = 'none'
   } else {
-    helloContainer.innerHTML = `<h1>You can say <em>"hello"</em> while you're in ${countryName} like this:<br><a href="https://www.google.com/search?q=how+to+pronounce+${howHello}" target="_blank"><span id="hola">${howHello}</span></a></h1>`
+    helloContainer.innerHTML = `<div id="inner-hello"><h1>You can say <em>"hello"</em> while you're in ${countryName} like this:<br><a href="https://www.google.com/search?q=how+to+pronounce+${howHello}" target="_blank"><span id="hola">${howHello}</span></a></h1></div>`
   }
   GetMap = () => {
     let map = new Microsoft.Maps.Map(mapContainer, {
@@ -93,33 +94,57 @@ const apiCall = async () => {
     document.querySelector('#top-right').style.display = 'none'
   }
   let baqi = airQuality.data.data.indexes.baqi.aqi
-  airQ.style.color = airQuality.data.data.indexes.baqi.color
-  airQ.innerHTML = baqi
 
+  if (baqi !== '') {
+    topRight.innerHTML = `<div id ='airQModule'><h3><i class="fa-solid fa-wind"></i> Air Quality<br><br> <span id="air-quality">${baqi}</span></h3></div>`
+  }
+  document.querySelector('#air-quality').style.color =
+    airQuality.data.data.indexes.baqi.color
+  document.querySelector('#air-quality').style.backgroundColor = '#555'
+  document.querySelector('#air-quality').style.padding = '6px'
+  document.querySelector('#air-quality').style.borderRadius = '8px'
+  document.querySelector('#air-quality').style.marginTop = '40px'
   let currentTemp = currentConditions.data.data.temperature.value
   let feelsLike = currentConditions.data.data.feels_like_temperature.value
   let rainChance =
     currentConditions.data.data.precipitation.precipitation_probability
-
-  let grassInSeason = pollenCount.data.data[0].types.grass.in_season
-  let weedsInSeason = pollenCount.data.data[0].types.weed.in_season
-  let treesInSeason = pollenCount.data.data[0].types.tree.in_season
-  let grass = pollenCount.data.data[0].types.grass.display_name
-  let weeds = pollenCount.data.data[0].types.weed.display_name
-  let trees = pollenCount.data.data[0].types.tree.display_name
-
-  pollenGrass.innerHTML = `<p>${grass}: ${grassInSeason}`
-  pollenWeeds.innerHTML = `<p>${weeds}s: ${weedsInSeason}`
-  pollenTrees.innerHTML = `<p>${trees}s: ${treesInSeason}`
-
   const celciusToFar = (temp) => {
     let converted = Math.round((temp * 9) / 5 + 32)
     return parseInt(converted)
   }
-
-  temp.innerHTML = celciusToFar(currentTemp) + '&deg;' + ' '
-  feels.innerHTML = celciusToFar(feelsLike) + '&deg;' + ' '
-  rain.innerHTML = rainChance + '%'
+  if (currentTemp !== '') {
+    topLeft.innerHTML = `<div id="tempModule"><h3><i class="fa-solid fa-temperature-full"></i> Temperature:</h3>
+  <p style="text-align: left; margin: 10px;">Temperature <span id="temp">${celciusToFar(
+    currentTemp
+  )}°</span></p>
+  <p style="text-align: left; margin: 10px;">Feels like: <span id="feels">${celciusToFar(
+    feelsLike
+  )}°</span></p>
+  <p style="text-align: left; margin: 10px;">Chance of rain: <span id="rain">${
+    rainChance + '%'
+  }</span></p></div>`
+  }
+  let grassInSeason
+  let treesInSeason
+  let weedsInSeason
+  if (pollenCount.data.data[0].types.grass.in_season) {
+    grassInSeason = 'Yes'
+  } else {
+    grassInSeason = 'No'
+  }
+  if (pollenCount.data.data[0].types.tree.in_season) {
+    treesInSeason = 'Yes'
+  } else {
+    treesInSeason = 'No'
+  }
+  if (pollenCount.data.data[0].types.weed.in_season) {
+    weedsInSeason = 'Yes'
+  } else {
+    weedsInSeason = 'No'
+  }
+  if (grassInSeason !== '') {
+    topCenter.innerHTML = `<div id="pollenModule"><h3><i class="fa-solid fa-leaf"></i> Pollen Factors</h3><p id="pollen-grass">Grass: ${grassInSeason}</p><p id="pollen-weeds">Weeds: ${weedsInSeason}</p><p id="pollen-trees">Trees: ${treesInSeason}</p></div>`
+  }
   GetMap()
 }
 
