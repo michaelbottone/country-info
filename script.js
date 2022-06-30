@@ -166,7 +166,7 @@ const apiCall = async () => {
   if (grassInSeason !== '') {
     topCenter.innerHTML = `<div id="pollenModule"><h3><i class="fa-solid fa-leaf"></i> Pollen Factors</h3><p id="pollen-grass">Grass: ${grassInSeason}</p><p id="pollen-weeds">Weeds: ${weedsInSeason}</p><p id="pollen-trees">Trees: ${treesInSeason}</p></div>`
   }
-
+  console.log(latitude, longitude)
   GetMap()
 }
 

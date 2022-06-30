@@ -35,12 +35,14 @@ i {
 }
 .left-container {
   margin-top: 20px;
+  flex-basis: 45%;
 }
 .top-container {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
 }
+
 .lp-container {
   display: flex;
   flex-direction: column;
@@ -55,6 +57,7 @@ i {
   display: flex;
   justify-content: center;
   gap: 40px;
+  margin-top: 3%;
 }
 
 #inner-hello {
