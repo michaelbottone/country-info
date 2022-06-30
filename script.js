@@ -1,3 +1,5 @@
+// ############### DOM VARIABLES ###############
+
 const temp = document.querySelector('#temp')
 const feels = document.querySelector('#feels')
 const rain = document.querySelector('#rain')
@@ -14,30 +16,39 @@ const queryString = window.location.search
 const urlParams = new URLSearchParams(queryString)
 const countryCode = urlParams.get('cc')
 const countryName = urlParams.get('countryName')
+
+// ############### API KEYS ###############
 const breezeApiKey = '2995c6b87cb74d0fae2e8244e4cb8129'
 const apiKey =
   'AiwZaKSOpDkgpIQGX2rMFIsMkvcd_Nv98haULE_IvmMaDv4H5ckuSlGYt3hLoYY-'
+
+// ############### INFOBOX TEMPLATE ###############
 const infoboxTemplate =
   '<div class="customInfobox"><div class="title">{title}</div>{description}</div>'
 
+// ############### HOW TO SAY HELLO API CALL ###############
 const apiCall = async () => {
   let response = await axios.get(
     `https://fourtonfish.com/hellosalut/?cc=${countryCode}`
   )
-  let mapRepsonse = await axios.get(
+  // ############### GETS LAT/LONG ###############
+  const mapRepsonse = await axios.get(
     `https://dev.virtualearth.net/REST/v1/Locations?query='${countryName}'jsonp=GeocodeCallback&key=${apiKey}`
   )
+  // ###############  VARIABLES FOR HELLO AND LAT/LONG ###############
   let howHello = response.data.hello
   let latitude =
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[0]
   let longitude =
     mapRepsonse.data.resourceSets[0].resources[0].point.coordinates[1]
+  // ############### DOM MANIPULATION ###############
   locationContainer.innerHTML = `You can find ${countryName} here:`
   if (response.data.hello === '') {
     document.querySelector('.left-container').style.display = 'none'
   } else {
     helloContainer.innerHTML = `<div id="inner-hello"><h1>You can say <em>"hello"</em> while you're in ${countryName} like this:<br><a href="https://www.google.com/search?q=how+to+pronounce+${howHello}" target="_blank"><span id="hola">${howHello}</span></a></h1></div>`
   }
+  // ############### GETS BING MAP ###############
   GetMap = () => {
     let map = new Microsoft.Maps.Map(mapContainer, {
       credentials: apiKey,
@@ -50,9 +61,10 @@ const apiCall = async () => {
       subtitle: howHello,
       color: '#ff3333'
     })
+    // ############### CUSTOM INFOBOX ###############
     let title = `<a id="googleLink" href="https://www.google.com/search?q=${countryName}" target="_blank" title="click to google this country">${countryName}</a>`
     let description = `You can say hello in ${countryName} like this: <br><span id="infobox-desc">${howHello}</span>`
-
+    // ############### HIDES INFOBOX IF NO DATA ON HELLO ###############
     if (howHello === '') {
     } else {
       let infobox = new Microsoft.Maps.Infobox(center, {
@@ -60,18 +72,22 @@ const apiCall = async () => {
           .replace('{title}', title)
           .replace('{description}', description)
       })
+
+      // ############### PUSH INFOBOX TO MAP ###############
       infobox.setMap(map)
     }
     map.setView({
       zoom: 4
     })
-
+    // ############### PUSH PIN TO MAP ###############
     map.entities.push(pin)
   }
 
+  // ############### DEVINE BREEZOMETER VARIABLES FOR TRY/CATCH ###############
   let currentConditions
   let pollenCount
   let airQuality
+  // ############### GET DATA DROM BREEZOMETER ###############
   try {
     currentConditions = await axios.get(
       `https://api.breezometer.com/weather/v1/current-conditions?lat=${latitude}&lon=${longitude}&key=${breezeApiKey}`
@@ -93,6 +109,7 @@ const apiCall = async () => {
   } catch (error) {
     document.querySelector('#top-right').style.display = 'none'
   }
+  // ############### HANDLES AIR QUALITY MODULE ###############
   let baqi = airQuality.data.data.indexes.baqi.aqi
 
   if (baqi !== '') {
@@ -104,10 +121,13 @@ const apiCall = async () => {
   document.querySelector('#air-quality').style.padding = '6px'
   document.querySelector('#air-quality').style.borderRadius = '8px'
   document.querySelector('#air-quality').style.marginTop = '40px'
+
+  // ############### HANDLES TEMP MODULE ###############
   let currentTemp = currentConditions.data.data.temperature.value
   let feelsLike = currentConditions.data.data.feels_like_temperature.value
   let rainChance =
     currentConditions.data.data.precipitation.precipitation_probability
+  // ############### CONVERTS CELCIUS TO FARNEHEIT ###############
   const celciusToFar = (temp) => {
     let converted = Math.round((temp * 9) / 5 + 32)
     return parseInt(converted)
@@ -124,6 +144,7 @@ const apiCall = async () => {
     rainChance + '%'
   }</span></p></div>`
   }
+  // ############### HANDLES ALLERGY MODULE ###############
   let grassInSeason
   let treesInSeason
   let weedsInSeason
@@ -145,6 +166,7 @@ const apiCall = async () => {
   if (grassInSeason !== '') {
     topCenter.innerHTML = `<div id="pollenModule"><h3><i class="fa-solid fa-leaf"></i> Pollen Factors</h3><p id="pollen-grass">Grass: ${grassInSeason}</p><p id="pollen-weeds">Weeds: ${weedsInSeason}</p><p id="pollen-trees">Trees: ${treesInSeason}</p></div>`
   }
+
   GetMap()
 }
 
